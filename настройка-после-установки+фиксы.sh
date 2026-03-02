@@ -21,7 +21,7 @@ icon-theme-Papirus-Dark, pipewire-jack.
 А также расширения gnome shell:
 add to desktop, blur my shell, no overview at startup.
 \e[0m'
-sudo apt-get install -y flatseal bleachbit extension-manager synaptic-usermode epmgpi eepm-play-gui baobab sushi luckybackup qdiskinfo gearlever android-tools grub-theme-dark icon-theme-Papirus icon-theme-Papirus-Dark pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch
+sudo apt-get install -y flatseal bleachbit gnome-extension-manager synaptic-usermode epmgpi eepm-play-gui baobab sushi luckybackup qdiskinfo gearlever android-tools grub-theme-dark icon-theme-Papirus icon-theme-Papirus-Dark pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch pip python3-module-pip 
 
 #==========================================================
 

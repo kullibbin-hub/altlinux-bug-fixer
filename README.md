@@ -16,7 +16,7 @@
     https://bugzilla.altlinux.org/show_bug.cgi?id=57356
 7. Отключение индексации содержимого файлов на диске (localsearch-3), снижает нагрузку на диск. Поиск по файлам при этом работает, как и раньше.
 
-Также, скрипт обновляет систему, устанавливает epm, который по умолчанию отсутствует, обновляет ядро, и далее устанавливает
+Также, скрипт активирует sudo, обновляет систему, устанавливает epm, который по умолчанию отсутствует, обновляет ядро, и далее устанавливает
 flatseal, bleachbit, 
 extension-manager, synaptic, epmgpi, eepm-play-gui, baobab, 
 sushi, luckybackup, qdiskinfo, gearlever, android-tools, 

@@ -106,48 +106,81 @@ echo "Автозагрузка создана: $DESKTOP_FILE
 echo -e  '\e[33m
 Настройка nautilus
 \e[0m'
+sudo apt-get install -y nautilus-admin-gtk4
 gsettings set org.gtk.gtk4.Settings.FileChooser sort-directories-first true
 gsettings set org.gnome.nautilus.preferences show-create-link true
 gsettings set org.gnome.nautilus.preferences show-delete-permanently true
 gsettings set org.gnome.nautilus.icon-view captions "['size', 'date_modified', 'none']"
 echo 'Включены опции: папки перед файлами, создание ссылок,
 удаление помимо корзины, и доп. информация о файлах в режиме значков.
+Добавление опции - открыть от имени администратора (nautilus-admin)
 '
 echo -e  '\e[33m
 Фикс появления фантомных устройств в индикаторе флешек
 \e[0m'
-RULES_DIR="/etc/polkit-1/rules.d"
-RULE_FILE="$RULES_DIR/49-no-usb-mount-gdm.rules"
 
-# Создаём каталог, если его нет
-if [ ! -d "$RULES_DIR" ]; then
-    echo "Создаю каталог $RULES_DIR ..."
-    sudo mkdir -p "$RULES_DIR"
+sudo apt-get install -y patch
+sudo rm -f /etc/polkit-1/rules.d/49-no-usb-mount-gdm.rules
+set -e
+
+EXT_DIR="/usr/share/gnome-shell/extensions"
+EXT_NAME="drive-menu@gnome-shell-extensions.gcampax.github.com"
+FILE="extension.js"
+TARGET="$EXT_DIR/$EXT_NAME/$FILE"
+BACKUP="$TARGET.bak"
+
+# Оригинальный размер файла, который можно патчить
+ORIGINAL_SIZE=6197
+
+echo "Проверяю наличие системного расширения..."
+
+if [ ! -f "$TARGET" ]; then
+    echo "Ошибка: файл $TARGET не найден."
+    exit 1
 fi
 
-# Создаём файл с правилом
-echo "Создаю polkit-правило для запрета монтирования USB в GDM..."
+CURRENT_SIZE=$(stat -c%s "$TARGET")
 
-sudo bash -c "cat > $RULE_FILE" << 'EOF'
-polkit.addRule(function(action, subject) {
-    if (subject.user == "gdm") {
-        if (action.id == "org.freedesktop.udisks2.filesystem-mount" ||
-            action.id == "org.freedesktop.udisks2.filesystem-mount-other-seat" ||
-            action.id == "org.freedesktop.udisks2.encrypted-unlock" ||
-            action.id == "org.freedesktop.udisks2.encrypted-unlock-other-seat" ||
-            action.id == "org.freedesktop.udisks2.loop-setup") {
-            return polkit.Result.NO;
-        }
-    }
-});
+echo "Оригинальный размер: $ORIGINAL_SIZE"
+echo "Текущий размер:      $CURRENT_SIZE"
+
+# Проверка размера
+if [ "$CURRENT_SIZE" != "$ORIGINAL_SIZE" ]; then
+    echo "Размер файла изменился. Патч НЕ применяется."
+    exit 0
+fi
+
+# Проверка, что патч ещё не применён
+if grep -q "this._mounts.some" "$TARGET"; then
+    echo "Патч уже применён. Ничего делать не нужно."
+    exit 0
+fi
+
+echo "Размер совпадает. Файл оригинальный. Создаю резервную копию: $BACKUP"
+sudo cp "$TARGET" "$BACKUP"
+
+echo "Применяю патч..."
+
+sudo patch "$TARGET" << 'EOF'
+@@ -178,6 +178,9 @@
+     }
+ 
+     _addMount(mount) {
++        if (this._mounts.some(item => item.mount === mount))
++            return;
++
+         let item = new MountMenuItem(mount);
+         this._mounts.unshift(item);
+         this.menu.addMenuItem(item, 0);
 EOF
 
-# Выставляем права
-echo "Устанавливаю права 644 на $RULE_FILE ..."
-sudo chmod 644 "$RULE_FILE"
+echo "Патч успешно применён."
+echo "Очищаю кэш GNOME Shell..."
 
-echo -e  "\e[33m
+rm -rf ~/.cache/gnome-shell/*
+
+echo -e  '\e[33m
 Готово. Теперь желательно перезагрузить компьютер.
-\e[0m"
+\e[0m'
 
 

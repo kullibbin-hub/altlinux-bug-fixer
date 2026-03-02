@@ -1,13 +1,14 @@
 #!/bin/sh
+
 echo -e  '\e[33m
 Получение sudo
 '
 pkexec bash control sudowheel enabled
-
 echo -e  '\e[33m
 sudo получено, далее потребуется ввод пароля еще раз.
 Обновление системы и установка доп пакетов
 \e[0m'
+
 sudo apt-get update
 sudo apt-get install -y eepm
 epm full-upgrade -y
@@ -20,15 +21,21 @@ icon-theme-Papirus-Dark, pipewire-jack.
 А также расширения gnome shell:
 add to desktop, blur my shell, no overview at startup.
 \e[0m'
-sudo apt-get install -y flatseal bleachbit extension-manager synaptic-usermode epmgpi eepm-play-gui baobab sushi luckybackup qdiskinfo gearlever android-tools grub-theme-dark icon-theme-Papirus icon-theme-Papirus-Dark pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup
+sudo apt-get install -y flatseal bleachbit extension-manager synaptic-usermode epmgpi eepm-play-gui baobab sushi luckybackup qdiskinfo gearlever android-tools grub-theme-dark icon-theme-Papirus icon-theme-Papirus-Dark pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch
 
-echo -e  '\e[33m
-Отключение индексатора дисков
-\e[0m'
-systemctl --user mask localsearch-3
-systemctl --user stop localsearch-3
-echo 'Служба localsearch-3 отключена
-'
+#==========================================================
+
+#echo -e  '\e[33m
+#Отключение индексатора дисков
+#\e[0m'
+#systemctl --user mask localsearch-3
+#systemctl --user stop localsearch-3
+#echo 'Служба localsearch-3 отключена
+#'
+systemctl --user unmask localsearch-3
+
+#==========================================================
+
 echo -e  '\e[33m
 Отключение автообновления
 \e[0m'
@@ -36,12 +43,18 @@ gsettings set org.gnome.software download-updates false
 echo 'Автообновление отключено, это ускорило запуск центра
 приложений, но уведомления об их наличии будут приходить все равно!
 '
+
+#==========================================================
+
 echo -e  '\e[33m
 Разрешение приложениям Flatpak на доступ к домашнему каталогу
 \e[0m'
 flatpak override --user --filesystem=home
 echo 'готово, теперь drag-n-drop с рабочего стола работает.
 '
+
+#==========================================================
+
 echo -e  '\e[33m
 Настройка адекватного поведения индикатора копирования nautilus
 \e[0m'
@@ -70,6 +83,8 @@ echo " sudo sysctl vm.dirty_bytes vm.dirty_background_bytes
 Готово.
 "
 
+#==========================================================
+
 echo -e  '\e[33m
 Фикс ложного включения gsconnect
 \e[0m'
@@ -85,7 +100,7 @@ mkdir -p "$AUTOSTART_DIR"
 cat > "$SCRIPT_FILE" << 'EOF'
 #!/bin/sh
 sleep 8
-killall daemon.js
+pkill -f "/usr/share/gnome-shell/extensions/gsconnect@andyholmes.github.io/service/daemon.js"
 EOF
 
 chmod +x "$SCRIPT_FILE"
@@ -103,6 +118,8 @@ echo "Автозагрузка создана: $DESKTOP_FILE
 Теперь gsconnect работает адекватно
 "
 
+#==========================================================
+
 echo -e  '\e[33m
 Настройка nautilus
 \e[0m'
@@ -115,11 +132,13 @@ echo 'Включены опции: папки перед файлами, соз�
 удаление помимо корзины, и доп. информация о файлах в режиме значков.
 Добавление опции - открыть от имени администратора (nautilus-admin)
 '
+
+#==========================================================
+
 echo -e  '\e[33m
 Фикс появления фантомных устройств в индикаторе флешек
 \e[0m'
 
-sudo apt-get install -y patch
 sudo rm -f /etc/polkit-1/rules.d/49-no-usb-mount-gdm.rules
 set -e
 
@@ -147,21 +166,20 @@ echo "Текущий размер:      $CURRENT_SIZE"
 # Проверка размера
 if [ "$CURRENT_SIZE" != "$ORIGINAL_SIZE" ]; then
     echo "Размер файла изменился. Патч НЕ применяется."
-    exit 0
-fi
+    :
+else
+    # Проверка, что патч ещё не применён
+    if grep -q "this._mounts.some" "$TARGET"; then
+        echo "Патч уже применён. Ничего делать не нужно."
+        echo "Продолжаю выполнение скрипта."
+        :
+    else
+        echo "Размер совпадает. Файл оригинальный. Создаю резервную копию: $BACKUP"
+        sudo cp "$TARGET" "$BACKUP"
 
-# Проверка, что патч ещё не применён
-if grep -q "this._mounts.some" "$TARGET"; then
-    echo "Патч уже применён. Ничего делать не нужно."
-    exit 0
-fi
+        echo "Применяю патч..."
 
-echo "Размер совпадает. Файл оригинальный. Создаю резервную копию: $BACKUP"
-sudo cp "$TARGET" "$BACKUP"
-
-echo "Применяю патч..."
-
-sudo patch "$TARGET" << 'EOF'
+        sudo patch "$TARGET" << 'EOF'
 @@ -178,6 +178,9 @@
      }
  
@@ -174,10 +192,13 @@ sudo patch "$TARGET" << 'EOF'
          this.menu.addMenuItem(item, 0);
 EOF
 
-echo "Патч успешно применён."
-echo "Очищаю кэш GNOME Shell..."
+        echo "Патч успешно применён."
+        echo "Очищаю кэш GNOME Shell..."
+        rm -rf ~/.cache/gnome-shell/*
+    fi
+fi
 
-rm -rf ~/.cache/gnome-shell/*
+#==========================================================
 
 echo -e  '\e[33m
 Готово. Теперь желательно перезагрузить компьютер.

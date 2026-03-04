@@ -18,9 +18,9 @@
 Также, скрипт активирует sudo, обновляет систему, устанавливает epm, который по умолчанию отсутствует, обновляет ядро, и далее устанавливает: 
 flatseal, bleachbit, 
 extension-manager, synaptic, epmgpi, eepm-play-gui, baobab, 
-sushi, luckybackup, qdiskinfo, gearlever, android-tools, 
-java-21-openjdk, grub-theme-dark, icon-theme-Papirus, 
-icon-theme-Papirus-Dark, pipewire-jack. 
+sushi, qdiskinfo, gearlever, android-tools, 
+java-21-openjdk, grub-theme-dark, papirus-remix-icon-theme, 
+pipewire-jack, android-tools, spruce, pins
 
 А также расширения gnome shell:
 add to desktop, blur my shell, no overview at startup.
@@ -68,3 +68,9 @@ systemctl --user start localsearch-3
 Также, у кого после последних обновлений стал очень долго выключаться компьютер, проблема может быть в расширении Gtk4 Desktop Icons. Просто через менеджер расширений,
 который заодно устанавливает данный скрипт, отключить Gtk4 Desktop Icons, и установить Desktop Icons NG (без GTK4). Зависания при выключении прекратятся.
 
+4.03.2026 Update:
+
+1. Изменен состав устанавливаемых пакетов. Добавлены цветные темы значков papirus remix, программа для очистке кэшей spruce,
+   программа для работы со значками приложений pins. Убрана luckybackup.
+2. У кого установлено расширение dash-to-panel, это нижняя панель, добавлены пункты в контекстное меню, теперь оттуда дополнительно доступны
+   Менеджер расширений, Тюнер, Очистка кэша приложений, Альтератор.

@@ -14,8 +14,7 @@ sudo получено.
 \e[0m'
 
 sudo apt-get update
-sudo apt-get install -y eepm
-epm full-upgrade -y
+sudo apt-get dist-upgrade -y
 
 ============================================================
 
@@ -24,12 +23,12 @@ echo -e  '\e[33m
 gnome-extension-manager, synaptic, epmgpi, eepm-play-gui,
 baobab, sushi, qdiskinfo, gearlever, android-tools, spruce, 
 pins, java-21-openjdk, grub-theme-dark, papirus-remix-icon-theme, 
-pipewire-jack. 
+pipewire-jack, nautilus-admin-gtk4, eepm.
 А также расширения gnome shell:
 add to desktop, blur my shell, no overview at startup.
 \e[0m'
 
-sudo apt-get install -y flatseal bleachbit gnome-extension-manager synaptic-usermode ignition-adw epmgpi eepm-play-gui baobab sushi  qdiskinfo gearlever android-tools grub-theme-dark papirus-remix-icon-theme pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch pip python3-module-pip spruce pins file unzip shared-mime-info
+sudo apt-get install -y eepm flatseal bleachbit gnome-extension-manager synaptic-usermode ignition-adw epmgpi eepm-play-gui baobab sushi  qdiskinfo gearlever android-tools grub-theme-dark papirus-remix-icon-theme pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch pip python3-module-pip spruce pins file unzip shared-mime-info nautilus-admin-gtk4 
 
 #==========================================================
 
@@ -131,11 +130,12 @@ echo "Автозагрузка создана: $DESKTOP_FILE
 echo -e  '\e[33m
 Настройка nautilus
 \e[0m'
-sudo apt-get install -y nautilus-admin-gtk4
+
 gsettings set org.gtk.gtk4.Settings.FileChooser sort-directories-first true
 gsettings set org.gnome.nautilus.preferences show-create-link true
 gsettings set org.gnome.nautilus.preferences show-delete-permanently true
 gsettings set org.gnome.nautilus.icon-view captions "['size', 'date_modified', 'none']"
+
 echo 'Включены опции: папки перед файлами, создание ссылок,
 удаление помимо корзины, и доп. информация о файлах в режиме значков.
 Добавление опции - открыть от имени администратора (nautilus-admin)

@@ -217,7 +217,7 @@ echo -e  '\e[33m
 
 gsettings set org.gnome.shell.extensions.dash-to-panel context-menu-entries '[{"title":"Terminal","cmd":"TERMINALSETTINGS"},{"title":"System monitor","cmd":"resources"},{"title":"Files","cmd":"nautilus"},{"title":"Extensions","cmd":"extension-manager"},{"title":"Тюнер","cmd":"tuner"},{"title":"Очистка кэша приложений","cmd":"spruce"},{"title":"Альтератор - центр управления","cmd":"acc"}]'
 
-===========================================================
+#===========================================================
 
 echo -e  '\e[33m
 Готово. 

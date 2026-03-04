@@ -4,14 +4,21 @@ echo -e  '\e[33m
 Получение sudo
 '
 pkexec bash control sudowheel enabled
+
+=============================================================
+
 echo -e  '\e[33m
-sudo получено, далее потребуется ввод пароля еще раз.
-Обновление системы и установка доп пакетов
+sudo получено.
+Обновление системы и установка доп пакетов.
+Потребуется ввод пароля еще раз (символы не отображаются):
 \e[0m'
 
 sudo apt-get update
 sudo apt-get install -y eepm
 epm full-upgrade -y
+
+============================================================
+
 echo -e  '\e[33m
 Будут установлены из репозитория: flatseal, bleachbit, 
 extension-manager, synaptic, epmgpi, eepm-play-gui, baobab, 
@@ -21,7 +28,8 @@ icon-theme-Papirus-Dark, pipewire-jack.
 А также расширения gnome shell:
 add to desktop, blur my shell, no overview at startup.
 \e[0m'
-sudo apt-get install -y flatseal bleachbit gnome-extension-manager synaptic-usermode epmgpi eepm-play-gui baobab sushi luckybackup qdiskinfo gearlever android-tools grub-theme-dark icon-theme-Papirus icon-theme-Papirus-Dark pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch pip python3-module-pip 
+
+sudo apt-get install -y flatseal bleachbit gnome-extension-manager synaptic-usermode ignition-adw epmgpi eepm-play-gui baobab sushi  qdiskinfo gearlever android-tools grub-theme-dark papirus-remix-icon-theme pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch pip python3-module-pip 
 
 #==========================================================
 
@@ -198,10 +206,27 @@ EOF
     fi
 fi
 
+echo '
+Готово.'
+
 #==========================================================
 
 echo -e  '\e[33m
-Готово. Теперь желательно перезагрузить компьютер.
+Добавление в контекстное меню нижней панели доп. программ
+\e[0m'
+
+gsettings set org.gnome.shell.extensions.dash-to-panel context-menu-entries '[{"title":"Terminal","cmd":"TERMINALSETTINGS"},{"title":"System monitor","cmd":"resources"},{"title":"Files","cmd":"nautilus"},{"title":"Extensions","cmd":"gnome-extensions-app"},{"title":"Тюнер","cmd":"tuner"},{"title":"Альтератор - центр управления","cmd":"acc"}]'
+
+===========================================================
+
+echo -e  '\e[33m
+Готово. 
+Новые цветные темы значков можно выбрать в приложении Тюнер.
+Если установлена нижняя панель (расширение dash-to-panel), то 
+по правому клику на панели доступны все настроечные приложения,
+в том числе и Тюнер. В том же меню есть и настройка расширений.
+
+Теперь желательно перезагрузить компьютер.
 \e[0m'
 
 

@@ -228,13 +228,16 @@ echo -e  '\e[33m
 Создание thumbnailer для .FCstd файлов.
 \e[0m'
 
+echo 'Удаление старых файлов'
+sudo rm -f /usr/local/bin/fcstd-thumbnailer
+sudo rm -f /usr/share/thumbnailers/fcstd.thumbnailer
 echo '
-Создание файла /usr/local/bin/fcstd-thumbnailer'
-sudo tee /usr/local/bin/fcstd-thumbnailer > /dev/null << 'EOF'
+Создание файла /usr/local/bin/freecad-thumbnailer'
+sudo tee /usr/local/bin/freecad-thumbnailer > /dev/null << 'EOF'
 #!/bin/bash
 
-INPUT="$1"
-OUTPUT="$2"
+INPUT="$3"
+OUTPUT="$4"
 
 # проверка наличия thumbnail внутри архива
 if unzip -l "$INPUT" thumbnails/Thumbnail.png >/dev/null 2>&1; then
@@ -246,21 +249,20 @@ else
 fi
 EOF
 
-sudo chmod +x /usr/local/bin/fcstd-thumbnailer
+sudo chmod +x /usr/local/bin/freecad-thumbnailer
 
 echo '
-Создание файла /usr/share/thumbnailers/fcstd.thumbnailer'
-sudo tee /usr/share/thumbnailers/fcstd.thumbnailer > /dev/null << 'EOF'
+Создание файла /usr/share/thumbnailers/FreeCAD1.thumbnailer'
+sudo tee /usr/share/thumbnailers/FreeCAD1.thumbnailer > /dev/null << 'EOF'
 [Thumbnailer Entry]
-TryExec=/usr/local/bin/fcstd-thumbnailer
-Exec=/usr/local/bin/fcstd-thumbnailer %i %o %s
-MimeType=application/x-extension-fcstd;application/vnd.freecad.fcstd;
+TryExec=freecad-thumbnailer
+Exec=freecad-thumbnailer -s %s %i %o
+MimeType=application/x-extension-fcstd;
 EOF
 
 echo '
 Очистка кэша'
 rm -rf ~/.cache/thumbnails/*
-
 #===========================================================
 
 echo -e  '\e[33m

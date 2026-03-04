@@ -29,7 +29,7 @@ icon-theme-Papirus-Dark, pipewire-jack.
 add to desktop, blur my shell, no overview at startup.
 \e[0m'
 
-sudo apt-get install -y flatseal bleachbit gnome-extension-manager synaptic-usermode ignition-adw epmgpi eepm-play-gui baobab sushi  qdiskinfo gearlever android-tools grub-theme-dark papirus-remix-icon-theme pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch pip python3-module-pip 
+sudo apt-get install -y flatseal bleachbit gnome-extension-manager synaptic-usermode ignition-adw epmgpi eepm-play-gui baobab sushi  qdiskinfo gearlever android-tools grub-theme-dark papirus-remix-icon-theme pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch pip python3-module-pip spruce
 
 #==========================================================
 

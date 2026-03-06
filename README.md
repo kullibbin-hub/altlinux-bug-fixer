@@ -86,6 +86,15 @@ sudo apt-get install -y gnome-shell-extension-dash-to-panel gnome-shell-extensio
 
 sudo apt-get install -y papirus-remix-icon-theme
 
+Установка flatpak и flathub - для установки  огромного числа приложений с зарубежного международного репозитория flathub:
+
+sudo apt-get install -y flatpak firsttime-flatpak-mask-openh264 flatpak-fix-openh264+stplr-test-flatpak-fix-openh264 flatpak-repo-flathub
+
+Установка репозитория aides и к нему stplr - еще приложения из российского репозитория:
+
+sudo apt-get install -y stplr stplr-repo-aides gnome-software-plugin-stplr
+
+
 =================================================
 
 Данный скрипт можно свободно распространять, модифицировать и использовать без каких-либо ограничений, на свой страх и риск.

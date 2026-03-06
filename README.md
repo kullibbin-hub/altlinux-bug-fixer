@@ -95,6 +95,8 @@ sudo apt-get install -y flatpak firsttime-flatpak-mask-openh264 flatpak-fix-open
 
 sudo apt-get install -y stplr stplr-repo-aides gnome-software-plugin-stplr
 
+Все скрипты по отдельности, для выполнения каждой задачи, находятся в архиве scripts.zip
+
 
 =================================================
 

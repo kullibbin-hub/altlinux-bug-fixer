@@ -2,10 +2,10 @@
 
 echo -e  '\e[33m
 Получение sudo
-'
+\e[0m'
 pkexec bash control sudowheel enabled
 
-=============================================================
+#=============================================================
 
 echo -e  '\e[33m
 sudo получено.
@@ -16,14 +16,14 @@ sudo получено.
 sudo apt-get update
 sudo apt-get dist-upgrade -y
 
-============================================================
+#============================================================
 
 echo -e  '\e[33m
 Будут установлены из репозитория: flatseal, tuner с плагинами,
 gnome-extension-manager, synaptic, epmgpi, eepm-play-gui,
 baobab, sushi, qdiskinfo, gearlever, android-tools, spruce, 
 pins, java-21-openjdk, grub-theme-dark, pipewire-jack, 
-nautilus-admin-gtk4, eepm, showtime, gapless.
+nautilus-admin-gtk4, eepm, showtime, gapless, git.
 А также расширения gnome shell:
 add to desktop, blur my shell, no overview at startup,
 appindicator.
@@ -31,7 +31,7 @@ appindicator.
 
 # Далее установка доп. программ. Ненужные можно удалить, сохраняя пробел между соседними записями.
 
-sudo apt-get install -y eepm flatseal gnome-extension-manager synaptic-usermode ignition-adw epmgpi eepm-play-gui baobab sushi  qdiskinfo gearlever android-tools grub-theme-dark pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch pip python3-module-pip spruce pins file unzip shared-mime-info nautilus-admin-gtk4 showtime g4music gnome-shell-extension-appindicator tuner ^tuner-*
+sudo apt-get install -y eepm flatseal gnome-extension-manager synaptic-usermode ignition-adw epmgpi eepm-play-gui baobab sushi  qdiskinfo gearlever android-tools grub-theme-dark pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch pip python3-module-pip spruce pins file unzip shared-mime-info nautilus-admin-gtk4 showtime g4music gnome-shell-extension-appindicator git tuner ^tuner-*
 
 #==========================================================
 
@@ -72,7 +72,7 @@ DIRTY_FILE="/etc/sysctl.d/90-dirty.conf"
 
 echo "→ Applying and saving vm.dirty settings..."
 
-# 32 МБ и 8 МБ
+# 64 МБ и 16 МБ
 DIRTY_BYTES=$((64 * 1024 * 1024))
 DIRTY_BG_BYTES=$((16 * 1024 * 1024))
 
@@ -221,6 +221,17 @@ echo -e  '\e[33m
 \e[0m'
 
 gsettings set org.gnome.shell.extensions.dash-to-panel context-menu-entries '[{"title":"Terminal","cmd":"kgx"},{"title":"System monitor","cmd":"resources"},{"title":"Files","cmd":"nautilus"},{"title":"Extensions","cmd":"extension-manager"},{"title":"Тюнер","cmd":"tuner"},{"title":"Очистка кэша приложений","cmd":"spruce"},{"title":"Альтератор - центр управления","cmd":"acc"}]'
+
+echo 'Теперь меню имеет вид:
+
+Терминал
+Системный монитор
+Файлы
+Расширения
+Тюнер
+Очистка кэша приложений
+Альтератор - центр управления
+'
 
 echo '
 Готово.'

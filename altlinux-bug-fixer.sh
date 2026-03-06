@@ -25,12 +25,13 @@ baobab, sushi, qdiskinfo, gearlever, android-tools, spruce,
 pins, java-21-openjdk, grub-theme-dark, pipewire-jack, 
 nautilus-admin-gtk4, eepm, showtime, gapless.
 А также расширения gnome shell:
-add to desktop, blur my shell, no overview at startup.
+add to desktop, blur my shell, no overview at startup,
+appindicator.
 \e[0m'
 
 # Далее установка доп. программ. Ненужные можно удалить, сохраняя пробел между соседними записями.
 
-sudo apt-get install -y eepm flatseal gnome-extension-manager synaptic-usermode ignition-adw epmgpi eepm-play-gui baobab sushi  qdiskinfo gearlever android-tools grub-theme-dark pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch pip python3-module-pip spruce pins file unzip shared-mime-info nautilus-admin-gtk4 showtime g4music tuner ^tuner-*
+sudo apt-get install -y eepm flatseal gnome-extension-manager synaptic-usermode ignition-adw epmgpi eepm-play-gui baobab sushi  qdiskinfo gearlever android-tools grub-theme-dark pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch pip python3-module-pip spruce pins file unzip shared-mime-info nautilus-admin-gtk4 showtime g4music gnome-shell-extension-appindicator tuner ^tuner-*
 
 #==========================================================
 

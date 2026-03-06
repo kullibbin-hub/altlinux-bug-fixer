@@ -23,7 +23,7 @@
 epm, flatseal, extension-manager, synaptic, epmgpi, 
 eepm-play-gui, baobab, sushi, qdiskinfo, gearlever, android-tools, 
 java-21-openjdk, grub-theme-dark, 
-pipewire-jack, spruce, pins, gapless, showtime, 
+pipewire-jack, spruce, pins, gapless, showtime, git, 
 tuner с плагинами. 
 
 А также расширения gnome shell:
@@ -36,6 +36,7 @@ tuner с плагинами.
 Управление расширениями доступно в менеджере расширений, у кого настроен панельный режим с нижней панелью, менеджер расширений, тюнер и другие программы доступны в меню по правому клику на панели.
 
 Добавлено создание эскизов в окне nautilus (файлменеджера) для файлов проектов FreeCAD (.FCstd), AutoCAD (.dwg) и файлов 3D-моделей .stl. Для файлов .stl через epm play устанавливается сверхбыстрый просмотрщик f3d. В архиве лежат 3 файла этих форматов, для проверки создания миниатюр.
+Также, в скачанном архиве есть файл scripts.zip - в нем набор скриптов для выполнения конкретного одного действия, и файл readme.txt с описанием, для чего какой скрипт и как пользоваться. 
 
 Некоторые пакеты уже есть в Workstation, но могут отсутствовать в Starterkit, поэтому я их указал в списке.
 

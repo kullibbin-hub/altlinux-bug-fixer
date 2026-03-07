@@ -3,12 +3,16 @@
 echo -e  '\e[33m
 Получение sudo
 \e[0m'
+
 pkexec bash control sudowheel enabled
+
+echo '
+sudo получено.
+'
 
 #=============================================================
 
 echo -e  '\e[33m
-sudo получено.
 Обновление системы и установка доп пакетов.
 Потребуется ввод пароля еще раз (символы не отображаются):
 \e[0m'
@@ -16,14 +20,31 @@ sudo получено.
 sudo apt-get update
 sudo apt-get dist-upgrade -y
 
+echo '
+Система обновлена.
+'
+
 #============================================================
 
 echo -e  '\e[33m
-Будут установлены из репозитория: flatseal, tuner с плагинами,
+Добавление текущего пользователя в группу dialout
+\e[0m'
+
+sudo usermod -a -G dialout $USER
+ 
+echo '
+Готово. 
+'
+
+#=============================================================
+
+echo -e  '\e[33m
+Установка из репозитория: flatseal, tuner с плагинами,
 gnome-extension-manager, synaptic, epmgpi, eepm-play-gui,
 baobab, sushi, qdiskinfo, gearlever, android-tools, spruce, 
 pins, java-21-openjdk, grub-theme-dark, pipewire-jack, 
-nautilus-admin-gtk4, eepm, showtime, gapless, git.
+nautilus-admin-gtk4, eepm, showtime, gapless, git, simple-scan,
+foldy (менеджер папок полноэкранного меню Gnome).
 А также расширения gnome shell:
 add to desktop, blur my shell, no overview at startup,
 appindicator.
@@ -31,12 +52,16 @@ appindicator.
 
 # Далее установка доп. программ. Ненужные можно удалить, сохраняя пробел между соседними записями.
 
-sudo apt-get install -y eepm flatseal gnome-extension-manager synaptic-usermode ignition-adw epmgpi eepm-play-gui baobab sushi  qdiskinfo gearlever android-tools grub-theme-dark pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch pip python3-module-pip spruce pins file unzip shared-mime-info nautilus-admin-gtk4 showtime g4music gnome-shell-extension-appindicator git tuner ^tuner-*
+sudo apt-get install -y eepm flatseal gnome-extension-manager synaptic-usermode ignition-adw epmgpi eepm-play-gui baobab sushi  qdiskinfo gearlever android-tools grub-theme-dark pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch pip python3-module-pip spruce pins file unzip shared-mime-info nautilus-admin-gtk4 showtime g4music gnome-shell-extension-appindicator git foldy simple-scan tuner ^tuner-*
+
+echo '
+Готово, программы установлены. 
+'
 
 #==========================================================
 
 #echo -e  '\e[33m
-#Отключение индексатора дисков
+#Отключение индексатора содержимого файлов
 #\e[0m'
 #systemctl --user mask localsearch-3
 #systemctl --user stop localsearch-3

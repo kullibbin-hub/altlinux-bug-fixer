@@ -15,6 +15,7 @@ sudo получено.
 echo -e  '\e[33m
 Обновление системы и установка доп пакетов.
 Потребуется ввод пароля еще раз (символы не отображаются):
+
 \e[0m'
 
 sudo apt-get update
@@ -44,7 +45,7 @@ gnome-extension-manager, synaptic, epmgpi, eepm-play-gui,
 baobab, sushi, qdiskinfo, gearlever, android-tools, spruce, 
 pins, java-21-openjdk, grub-theme-dark, pipewire-jack, 
 nautilus-admin-gtk4, eepm, showtime, gapless, git, simple-scan,
-foldy (менеджер папок полноэкранного меню Gnome).
+foldy (менеджер папок полноэкранного меню Gnome), resources.
 А также расширения gnome shell:
 add to desktop, blur my shell, no overview at startup,
 appindicator.
@@ -52,7 +53,9 @@ appindicator.
 
 # Далее установка доп. программ. Ненужные можно удалить, сохраняя пробел между соседними записями.
 
-sudo apt-get install -y eepm flatseal gnome-extension-manager synaptic-usermode ignition-adw epmgpi eepm-play-gui baobab sushi  qdiskinfo gearlever android-tools grub-theme-dark pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch pip python3-module-pip spruce pins file unzip shared-mime-info nautilus-admin-gtk4 showtime g4music gnome-shell-extension-appindicator git foldy simple-scan tuner ^tuner-*
+sudo apt-get install -y eepm flatseal gnome-extension-manager synaptic-usermode ignition-adw epmgpi eepm-play-gui baobab sushi  qdiskinfo gearlever android-tools grub-theme-dark pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch pip python3-module-pip spruce pins file unzip shared-mime-info nautilus-admin-gtk4 showtime g4music gnome-shell-extension-appindicator git foldy simple-scan resources tuner ^tuner-*
+
+sudo epm upgrade "https://download.etersoft.ru/pub/Korinf/x86_64/ALTLinux/p11/eepm-*.noarch.rpm"
 
 echo '
 Готово, программы установлены. 
@@ -246,6 +249,9 @@ echo -e  '\e[33m
 \e[0m'
 
 gsettings set org.gnome.shell.extensions.dash-to-panel context-menu-entries '[{"title":"Terminal","cmd":"kgx"},{"title":"System monitor","cmd":"resources"},{"title":"Files","cmd":"nautilus"},{"title":"Extensions","cmd":"extension-manager"},{"title":"Тюнер","cmd":"tuner"},{"title":"Очистка кэша приложений","cmd":"spruce"},{"title":"Альтератор - центр управления","cmd":"acc"}]'
+gsettings set org.gnome.shell.extensions.dash-to-panel overview-click-to-exit true
+gsettings set org.gnome.shell.extensions.dash-to-panel secondarymenu-contains-showdetails true
+gsettings set org.gnome.shell.extensions.arcmenu menu-height 600
 
 echo 'Теперь меню имеет вид:
 
@@ -371,7 +377,7 @@ echo -e  '\e[33m
 Установка f3d через epm play
 \e[0m'
 
-sudo epm install task/409890/f3d
+sudo epm install -y task/409890/f3d
 
 echo '
 Готово.'

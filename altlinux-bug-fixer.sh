@@ -45,7 +45,8 @@ gnome-extension-manager, synaptic, epmgpi, eepm-play-gui,
 baobab, sushi, qdiskinfo, gearlever, android-tools, spruce, 
 pins, java-21-openjdk, grub-theme-dark, pipewire-jack, 
 nautilus-admin-gtk4, eepm, showtime, gapless, git, simple-scan,
-foldy (менеджер папок полноэкранного меню Gnome), resources.
+foldy (менеджер папок полноэкранного меню Gnome), resources,
+ffmpeg, hplip.
 А также расширения gnome shell:
 add to desktop, blur my shell, no overview at startup,
 appindicator.
@@ -53,9 +54,10 @@ appindicator.
 
 # Далее установка доп. программ. Ненужные можно удалить, сохраняя пробел между соседними записями.
 
-sudo apt-get install -y eepm flatseal gnome-extension-manager synaptic-usermode ignition-adw epmgpi eepm-play-gui baobab sushi  qdiskinfo gearlever android-tools grub-theme-dark pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch pip python3-module-pip spruce pins file unzip shared-mime-info nautilus-admin-gtk4 showtime g4music gnome-shell-extension-appindicator git foldy simple-scan resources tuner ^tuner-*
+sudo apt-get install -y eepm flatseal gnome-extension-manager synaptic-usermode ignition-adw epmgpi eepm-play-gui baobab sushi  qdiskinfo gearlever android-tools grub-theme-dark pipewire-jack gnome-shell-extension-add-to-desktop gnome-shell-extension-blur-my-shell gnome-shell-extension-no-overview-at-startup patch pip python3-module-pip spruce pins file unzip shared-mime-info nautilus-admin-gtk4 showtime g4music gnome-shell-extension-appindicator git foldy simple-scan resources ffmpeg hplip-gui hplip-sane tuner ^tuner-*
 
 sudo epm upgrade "https://download.etersoft.ru/pub/Korinf/x86_64/ALTLinux/p11/eepm-*.noarch.rpm"
+sudo epm play --update all
 
 echo '
 Готово, программы установлены. 

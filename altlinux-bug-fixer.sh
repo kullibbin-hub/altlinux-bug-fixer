@@ -379,7 +379,7 @@ echo -e  '\e[33m
 Установка f3d через epm play
 \e[0m'
 
-sudo epm install -y task/409890/f3d
+sudo epm install -y f3d
 
 echo '
 Готово.'

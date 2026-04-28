@@ -4,8 +4,8 @@
 > 
 > Автор больше не поддерживает этот проект, так как перешёл на KDE.
 > 
-> Актуальные скрипты для Alt Linux на KDE:  
-> [github.com/kullibbin-hub/alt-kde-fix](https://github.com/kullibbin-hub/alt-kde-fix)
+> Актуальные версии графической утилиты для ALT Linux на KDE:  
+> [https://github.com/kullibbin-hub/alt-kde-helper](https://github.com/kullibbin-hub/alt-kde-helper)
 > 
 > Форки исходного проекта приветствуются.
 
